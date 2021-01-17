@@ -1,8 +1,9 @@
 $(document).ready(function () {
   //user searches through api data
 
+  var foodInformation;
+  var foodData;
   var userInput = JSON.parse(localStorage.getItem(userInput)) || [];
-
   // SUBMIT EVENT LISTENER \\
   $("#submitFood").on("click", function (event) {
     event.preventDefault();
@@ -19,6 +20,21 @@ $(document).ready(function () {
     userInput.push(foodStringAPI);
     localStorage.setItem("userInput", JSON.stringify(userInput));
 
+    function renderButtons() {
+      $("#foodList").empty();
+      for (var i = 0; i < foodStringAPI.length; i++) {
+        var addList = $("<li>");
+        addList.addClass("foodStringAPI");
+        var foodButton = $("<button>");
+        foodButton.addClass("btn rounded");
+        foodButton.text(foodStringAPI[i]);
+
+        var tRow = $("<tr>");
+        var displayFoodName = $("<td>").text(foodInformation);
+        var displayCalories = $("<td>").text(foodData);
+        tRow.append(displayFoodName, displayCalories);
+      }
+    }
     // NUTRIENTS API AJAX \\
     let queryFoodURL = `https://api.edamam.com/api/nutrition-data?app_id=c502f564&app_key=a522a1a262d4a5a3968b56ede64ba74a&ingr=${foodStringAPI}`;
 
@@ -26,7 +42,11 @@ $(document).ready(function () {
       url: queryFoodURL,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
+      foodInformation = $("#foodList").text(response.ingredients[0].text);
+      foodData = $("#foodList").text(response.ingredients[0].calories);
     });
+    console.log(foodInformation, foodData);
+
+    renderButtons();
   });
 });
