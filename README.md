@@ -4,10 +4,6 @@
 An easy way to track your calories and stay within your caloric goal.
 
 
-## Deployed Link
-
-Heroku: (https://chadclark1234.github.io/Group-Project-1/)
-
 ![Demo](./assets/images/Cal_Oracle.gif)
 
 
