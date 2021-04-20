@@ -37,15 +37,19 @@ $(document).ready(function () {
     localStorage.setItem("userInput", JSON.stringify(userInput));
 
     // NUTRIENTS API AJAX \\
-    let API_keyEdamam1 = "cbb3cf379bbef53f88722a427517271c";
-    let API_IDEdamam1 = "a9074bf7";
-    let API_keyEdamam2 = "777f73bfb00d638abe3af718ec0a24c3";
-    let API_IDEdamam2 = "4f06cc56";
-    let API_keyEdamam3 = "a522a1a262d4a5a3968b56ede64ba74a";
-    let API_IDEdamam3 = "c502f564";
-    let API_keyEdamam4 = "11f6f2ee2f9abd5dbb0ccd3cf89ad771";
-    let API_IDEdamam4 = "df045e0d";
-    let queryFoodURL = `https://api.edamam.com/api/nutrition-data?app_id=${API_IDEdamam2}&app_key=${API_keyEdamam2}&ingr=${foodStringAPI}`;
+    // let API_keyEdamam1 = "cbb3cf379bbef53f88722a427517271c";
+    // let API_IDEdamam1 = "a9074bf7";
+    // let API_keyEdamam2 = "777f73bfb00d638abe3af718ec0a24c3";
+    // let API_IDEdamam2 = "4f06cc56";
+    // let API_keyEdamam3 = "a522a1a262d4a5a3968b56ede64ba74a";
+    // let API_IDEdamam3 = "c502f564";
+    // let API_keyEdamam4 = "11f6f2ee2f9abd5dbb0ccd3cf89ad771";
+    // let API_IDEdamam4 = "df045e0d";
+    // let queryFoodURL = `https://api.edamam.com/api/nutrition-data?app_id=${API_IDEdamam2}&app_key=${API_keyEdamam2}&ingr=${foodStringAPI}`;
+
+    let API_key_dataGov = "k3RAzKN1Ag14xTPlculT39RZb38LGgsG8n27ZycG";
+
+    let queryFoodURL = `https://api.usa.gov/crime/fbi/sapi/api/participation/national?api_key=${API_key_dataGov}`;
 
     // API CALL\\
     $.ajax({
@@ -53,9 +57,10 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       //LOCAL STORAGE FOR CALORIES
-      userCalories.push(response.calories);
-      localStorage.setItem("userCalories", JSON.stringify(userCalories));
-      applyTable();
+      console.log(response)
+      // userCalories.push(response.calories);
+      // localStorage.setItem("userCalories", JSON.stringify(userCalories));
+      // applyTable();
 
       // ACTIVATE MODAL \\
       if (response.totalWeight === 0) {
